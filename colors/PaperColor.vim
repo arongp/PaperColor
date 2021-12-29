@@ -26,7 +26,7 @@ fun! s:register_default_theme()
         \   'source' : 'http://github.com/NLKNguyen/papercolor-theme',
         \   'description' : 'The original PaperColor Theme, inspired by Google Material Design',
         \   'options' : {
-        \       'allow_bold': 1
+        \       'allow_bold': 0
         \    }
         \ }
 
@@ -829,7 +829,7 @@ fun! s:set_format_attributes()
   " Unless instructed otherwise either by theme setting or user overriding
 
   if s:themeOpt_allow_bold == 0
-    let s:ft_bold    = ""
+    let s:ft_bold    = s:ft_none
   endif
   if s:themeOpt_allow_italic == 0
     let s:ft_italic = ""
