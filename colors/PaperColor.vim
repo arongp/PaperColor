@@ -37,7 +37,7 @@ fun! s:register_default_theme()
         \     'NO_CONVERSION': 1,
         \     'TEST_256_COLOR_CONSISTENCY' : 1,
         \     'palette' : {
-        \       'color00' : ['#eeeeee', '255'],
+        \       'color00' : ['#fafafa', '255'],
         \       'color01' : ['#af0000', '124'],
         \       'color02' : ['#008700', '28'],
         \       'color03' : ['#5f8700', '64'],
@@ -55,12 +55,12 @@ fun! s:register_default_theme()
         \       'color15' : ['#005f87', '24'],
         \       'color16' : ['#0087af', '31'],
         \       'color17' : ['#008700', '28'],
-        \       'cursor_fg' : ['#eeeeee', '255'],
+        \       'cursor_fg' : ['#fafafa', '255'],
         \       'cursor_bg' : ['#005f87', '24'],
         \       'cursorline' : ['#e4e4e4', '254'],
         \       'cursorcolumn' : ['#e4e4e4', '254'],
         \       'cursorlinenr_fg' : ['#af5f00', '130'],
-        \       'cursorlinenr_bg' : ['#eeeeee', '255'],
+        \       'cursorlinenr_bg' : ['#fafafa', '255'],
         \       'popupmenu_fg' : ['#444444', '238'],
         \       'popupmenu_bg' : ['#d0d0d0', '252'],
         \       'search_fg' : ['#444444', '238'],
@@ -68,20 +68,20 @@ fun! s:register_default_theme()
         \       'incsearch_fg' : ['#ffff5f', '227'],
         \       'incsearch_bg' : ['#444444', '238'],
         \       'linenumber_fg' : ['#b2b2b2', '249'],
-        \       'linenumber_bg' : ['#eeeeee', '255'],
+        \       'linenumber_bg' : ['#fafafa', '255'],
         \       'vertsplit_fg' : ['#005f87', '24'],
-        \       'vertsplit_bg' : ['#eeeeee', '255'],
+        \       'vertsplit_bg' : ['#fafafa', '255'],
         \       'statusline_active_fg' : ['#e4e4e4', '254'],
         \       'statusline_active_bg' : ['#005f87', '24'],
         \       'statusline_inactive_fg' : ['#444444', '238'],
         \       'statusline_inactive_bg' : ['#d0d0d0', '252'],
         \       'todo_fg' : ['#00af5f', '35'],
-        \       'todo_bg' : ['#eeeeee', '255'],
+        \       'todo_bg' : ['#fafafa', '255'],
         \       'error_fg' : ['#af0000', '124'],
         \       'error_bg' : ['#ffd7ff', '225'],
         \       'matchparen_bg' : ['#c6c6c6', '251'],
         \       'matchparen_fg' : ['#005f87', '24'],
-        \       'visual_fg' : ['#eeeeee', '255'],
+        \       'visual_fg' : ['#fafafa', '255'],
         \       'visual_bg' : ['#0087af', '31'],
         \       'folded_fg' : ['#0087af', '31'],
         \       'folded_bg' : ['#afd7ff', '153'],
@@ -102,14 +102,14 @@ fun! s:register_default_theme()
         \       'tabline_bg':          ['#005f87', '24'],
         \       'tabline_active_fg':   ['#444444', '238'],
         \       'tabline_active_bg':   ['#e4e4e4', '254'],
-        \       'tabline_inactive_fg': ['#eeeeee', '255'],
+        \       'tabline_inactive_fg': ['#fafafa', '255'],
         \       'tabline_inactive_bg': ['#0087af', '31'],
         \       'buftabline_bg':          ['#005f87', '24'],
         \       'buftabline_current_fg':  ['#444444', '238'],
         \       'buftabline_current_bg':  ['#e4e4e4', '254'],
-        \       'buftabline_active_fg':   ['#eeeeee', '255'],
+        \       'buftabline_active_fg':   ['#fafafa', '255'],
         \       'buftabline_active_bg':   ['#005faf', '25'],
-        \       'buftabline_inactive_fg': ['#eeeeee', '255'],
+        \       'buftabline_inactive_fg': ['#fafafa', '255'],
         \       'buftabline_inactive_bg': ['#0087af', '31']
         \     }
         \   }
@@ -800,7 +800,7 @@ let s:to_HEX = {
       \ '240': '#585858',  '241': '#626262',  '242': '#6c6c6c',  '243': '#767676',  '244': '#808080',
       \ '245': '#8a8a8a',  '246': '#949494',  '247': '#9e9e9e',  '248': '#a8a8a8',  '249': '#b2b2b2',
       \ '250': '#bcbcbc',  '251': '#c6c6c6',  '252': '#d0d0d0',  '253': '#dadada',  '254': '#e4e4e4',
-      \ '255': '#eeeeee' }
+      \ '255': '#fafafa' }
 
 " }}}
 endfun
@@ -1149,10 +1149,10 @@ fun! s:apply_syntax_highlightings()
     " Switching between dark & light variant through `set background`
     if s:is_dark " DARK VARIANT
       set background=dark
-      exec 'hi EndOfBuffer' . s:fg_cursor_fg  . s:ft_none
     else " LIGHT VARIANT
       set background=light
     endif
+    exec 'hi EndOfBuffer' . s:fg_linenumber_fg . s:ft_none
 
     exec 'hi NonText' . s:fg_nontext . s:bg_background
     exec 'hi LineNr' . s:fg_linenumber_fg . s:bg_linenumber_bg
@@ -1165,7 +1165,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi SpecialKey' . s:fg_nontext
   exec 'hi Search' . s:fg_search_fg . s:bg_search_bg
   exec 'hi IncSearch' . s:fg_incsearch_fg . s:bg_incsearch_bg
-  exec 'hi StatusLine' . s:fg_statusline_active_bg . s:bg_statusline_active_fg
+  exec 'hi StatusLine' . s:fg_statusline_active_bg . s:bg_statusline_active_fg . s:ft_none
   exec 'hi StatusLineNC' . s:fg_statusline_inactive_bg . s:bg_statusline_inactive_fg
   exec 'hi StatusLineTerm' . s:fg_statusline_active_bg . s:bg_statusline_active_fg
   exec 'hi StatusLineTermNC' . s:fg_statusline_inactive_bg . s:bg_statusline_inactive_fg
@@ -1180,13 +1180,13 @@ fun! s:apply_syntax_highlightings()
   exec 'hi WildMenu' . s:fg_wildmenu_fg . s:bg_wildmenu_bg . s:ft_bold
 
   if version >= 700
-    exec 'hi CursorLine'  . s:bg_cursorline . s:ft_none
+    exec 'hi CursorLine' . s:bg_cursorline . s:ft_none
     if s:mode == s:MODE_16_COLOR
       exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:bg_cursorlinenr_bg
     else
       exec 'hi CursorLineNr' . s:fg_cursorlinenr_fg . s:bg_cursorlinenr_bg . s:ft_none
     endif
-    exec 'hi CursorColumn'  . s:bg_cursorcolumn . s:ft_none
+    exec 'hi CursorColumn' . s:bg_cursorcolumn . s:ft_none
     exec 'hi PMenu' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_none
     exec 'hi PMenuSel' . s:fg_popupmenu_fg . s:bg_popupmenu_bg . s:ft_reverse
     if s:themeOpt_transparent_background
@@ -1196,7 +1196,7 @@ fun! s:apply_syntax_highlightings()
     endif
   end
   if version >= 703
-    exec 'hi ColorColumn'  . s:bg_cursorcolumn . s:ft_none
+    exec 'hi ColorColumn' . s:bg_cursorcolumn . s:ft_none
   end
 
   exec 'hi TabLine' . s:fg_tabline_inactive_fg . s:bg_tabline_inactive_bg . s:ft_none
@@ -1206,7 +1206,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi BufTabLineCurrent' . s:fg_buftabline_current_fg . s:bg_buftabline_current_bg . s:ft_none
   exec 'hi BufTabLineActive' . s:fg_buftabline_active_fg . s:bg_buftabline_active_bg . s:ft_none
   exec 'hi BufTabLineHidden' . s:fg_buftabline_inactive_fg . s:bg_buftabline_inactive_bg . s:ft_none
-  exec 'hi BufTabLineFill'  . s:bg_buftabline_bg . s:ft_none
+  exec 'hi BufTabLineFill' . s:bg_buftabline_bg . s:ft_none
 
   " Standard Group Highlighting:
   exec 'hi Comment' . s:fg_comment . s:ft_italic
@@ -1372,7 +1372,7 @@ fun! s:apply_syntax_highlightings()
   exec 'hi cDelimiter' . s:fg_blue
   " exec 'hi cBraces' . s:fg_foreground
   " exec 'hi cIdentifier' . s:fg_blue . s:bg_pink
-  " exec 'hi cSemiColon'  . s:bg_blue
+  " exec 'hi cSemiColon' . s:bg_blue
   exec 'hi cOperator' . s:fg_aqua
   " exec 'hi cStatement' . s:fg_pink
   " exec 'hi cTodo' . s:fg_comment . s:ft_bold
@@ -2213,8 +2213,8 @@ fun! s:apply_syntax_highlightings()
   exec 'hi SpellLocal' . s:fg_foreground . s:bg_spelllocal
 
   " Plugin: Indent Guides
-  exec 'hi IndentGuidesOdd'  . s:bg_background
-  exec 'hi IndentGuidesEven'  . s:bg_cursorline
+  exec 'hi IndentGuidesOdd' . s:bg_background
+  exec 'hi IndentGuidesEven' . s:bg_cursorline
 
   " Plugin: Startify
   exec 'hi StartifyFile' . s:fg_blue . s:ft_bold
